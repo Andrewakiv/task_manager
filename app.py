@@ -1,12 +1,13 @@
 import asyncio
 from aiogram import Bot, Dispatcher
+from aiogram.enums import ParseMode
 from decouple import config
 from handlers import private, group
 from optional import options
 
 
 async def main():
-    bot = Bot(token=config('TOKEN'))
+    bot = Bot(token=config('TOKEN'), parse_mode=ParseMode.HTML)
     dp = Dispatcher()
     dp.include_routers(private.private_router, group.group_router)
 
