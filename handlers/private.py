@@ -27,11 +27,6 @@ async def options_cmd(message: types.Message):
     await message.answer('info about <b><u>bot</u></b>')
 
 
-@private_router.message(Command('homeworks'))
-async def options_cmd(message: types.Message):
-    await message.answer('all homeworks')
-
-
 @private_router.message(or_f(Command('links'), F.text.lower() == 'links'))
 async def options_cmd(message: types.Message):
     text = as_marked_section(

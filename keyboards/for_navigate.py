@@ -28,3 +28,16 @@ keyboard.add(
     types.KeyboardButton(text='about'),
 )
 keyboard.adjust(3, 2)
+
+homeworks_keyboard = types.ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            types.KeyboardButton(text='view all homeworks'),
+        ],
+        [
+            types.KeyboardButton(text='add new homework'),
+        ]
+    ],
+    resize_keyboard=True,
+    input_field_placeholder='Choose your option'
+)
