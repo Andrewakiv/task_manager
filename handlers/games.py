@@ -36,21 +36,24 @@ async def homeworks_cmd(message: types.Message):
 @games_router.message(F.text == 'view all games')
 async def all_homeworks_cmd(message: types.Message):
     games_list = await read_file()
-    for i in await read_file():
-        text = as_marked_section(
-            Underline(Bold('Game')),
-            as_key_value('Назва ', i['topic']),
-            as_key_value('Жанр ', i['number']),
-            as_key_value('Студія ', i['content']),
-            marker='📌 '
-        )
-        builder = InlineKeyboardBuilder()
-        builder.add(
-            types.InlineKeyboardButton(text='видалити гру', callback_data=f'deletegame_{games_list.index(i)}')
-        )
+    if len(games_list) > 0:
+        for i in await read_file():
+            text = as_marked_section(
+                Underline(Bold('Game')),
+                as_key_value('Назва ', i['topic']),
+                as_key_value('Жанр ', i['number']),
+                as_key_value('Студія ', i['content']),
+                marker='📌 '
+            )
+            builder = InlineKeyboardBuilder()
+            builder.add(
+                types.InlineKeyboardButton(text='видалити гру', callback_data=f'deletegame_{games_list.index(i)}')
+            )
 
-        await message.answer(text.as_html(), reply_markup=builder.as_markup())
-        await asyncio.sleep(0.3)
+            await message.answer(text.as_html(), reply_markup=builder.as_markup())
+            await asyncio.sleep(0.3)
+    else:
+        await message.answer('hane no films')
 
 
 @games_router.callback_query(F.data.split('_')[0] == 'deletegame')
