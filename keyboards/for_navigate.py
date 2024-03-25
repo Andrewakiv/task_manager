@@ -41,3 +41,17 @@ homeworks_keyboard = types.ReplyKeyboardMarkup(
     resize_keyboard=True,
     input_field_placeholder='Choose your option'
 )
+
+
+games_keyboard = types.ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            types.KeyboardButton(text='view all games'),
+        ],
+        [
+            types.KeyboardButton(text='add new game'),
+        ]
+    ],
+    resize_keyboard=True,
+    input_field_placeholder='Choose your option'
+)
